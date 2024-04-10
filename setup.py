@@ -1,9 +1,9 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 
 setup(
     name='common',
     version='0.1',
-    packages=find_packages(),
+    packages=['connection'],
     install_requires=[
         'pika'
     ],
