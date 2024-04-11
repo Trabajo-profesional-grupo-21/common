@@ -4,9 +4,15 @@ from .ExchangeQueue import ExchangeQueue
 import logging
 
 class Connection:
-    def __init__(self, host="rabbitmq"):
+    def __init__(self, host="rabbitmq", port=5672, virtual_host="/", user=None, password=None):
         try:
-            self.connection = pika.BlockingConnection(pika.ConnectionParameters(host='rabbitmq', heartbeat=1800))
+
+            credentials = None
+            if user and password:
+                credentials = pika.PlainCredentials(user, password)
+
+            parameters = pika.ConnectionParameters(host, port=port, virtual_host=virtual_host, credentials=credentials, heartbeat=1800)
+            self.connection = pika.BlockingConnection(parameters)
             self.channel = self.connection.channel()
             self._active_connection = True
             self._active_channel = False
