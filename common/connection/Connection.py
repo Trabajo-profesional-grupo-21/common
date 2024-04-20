@@ -10,8 +10,11 @@ class Connection:
             credentials = None
             if user and password:
                 credentials = pika.PlainCredentials(user, password)
+                parameters = pika.ConnectionParameters(host=host, port=port, virtual_host=virtual_host, credentials=credentials, heartbeat=1800)
+            else:
+                parameters = pika.ConnectionParameters(host=host, port=port, virtual_host=virtual_host, heartbeat=1800)
 
-            parameters = pika.ConnectionParameters(host, port=port, virtual_host=virtual_host, credentials=credentials, heartbeat=1800)
+            # parameters = pika.ConnectionParameters(host, port=port, virtual_host=virtual_host, credentials=credentials, heartbeat=1800)
             self.connection = pika.BlockingConnection(parameters)
             self.channel = self.connection.channel()
             self._active_connection = True
