@@ -6,6 +6,7 @@ setup(
     packages=find_packages(),
     install_requires=[
         'pika',
+        'aiormq',
     ],
     author='TPP - G21',
     author_email='',
