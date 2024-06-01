@@ -10,7 +10,7 @@ class Connection:
             credentials = None
             if user and password:
                 credentials = pika.PlainCredentials(user, password)
-                parameters = pika.ConnectionParameters(host=host, port=port, virtual_host=virtual_host, credentials=credentials, heartbeat=1800)
+                parameters = pika.ConnectionParameters(host=host, port=port, virtual_host=virtual_host, credentials=credentials, heartbeat=1800, blocked_connection_timeout=300, socket_timeout=1200)
             else:
                 parameters = pika.ConnectionParameters(host=host, port=port, virtual_host=virtual_host, heartbeat=1800)
 
