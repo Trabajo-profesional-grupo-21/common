@@ -81,7 +81,7 @@ class ExchangeQueue():
             self.channel.basic_publish(exchange="",
                         routing_key=self.queue_name,
                         body=message,
-                        properties=pika.BasicProperties(delivery_mode=2))  # message persistent
+                        properties=pika.BasicProperties(delivery_mode=1))  # message persistent
         except Exception as e:
             logging.error(f"Exchange Queue: Error resending message to binded queue {e}")
 
@@ -90,6 +90,6 @@ class ExchangeQueue():
             self.channel.basic_publish(exchange=self.exchange_name,
                         routing_key=routing_key,
                         body=message,
-                        properties=pika.BasicProperties(delivery_mode=2))  # message persistent
+                        properties=pika.BasicProperties(delivery_mode=1))  # message persistent
         except Exception as e:
             logging.error(f"Exchange Queue: Error sending message {e}")

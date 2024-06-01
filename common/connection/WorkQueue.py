@@ -53,6 +53,6 @@ class WorkQueue():
             self.channel.basic_publish(exchange='',
                         routing_key=self.queue_name,
                         body=message,
-                        properties=pika.BasicProperties(delivery_mode=2))
+                        properties=pika.BasicProperties(delivery_mode=1))
         except Exception as e:
             logging.error(f"Work Queue: Error sending message {e}")

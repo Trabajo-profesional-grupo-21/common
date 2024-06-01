@@ -87,7 +87,7 @@ class ExchangeQueue():
             await self.channel.basic_publish(exchange="",
                         routing_key=self.queue_name,
                         body=message,
-                        properties=aiormq.spec.Basic.Properties(delivery_mode=2))
+                        properties=aiormq.spec.Basic.Properties(delivery_mode=1))
         except Exception as e:
             logging.error(f"Exchange Queue: Error resending message to binded queue {e}")
 
@@ -96,6 +96,6 @@ class ExchangeQueue():
             await self.channel.basic_publish(exchange=self.exchange_name,
                         routing_key=routing_key,
                         body=message,
-                        properties=aiormq.spec.Basic.Properties(delivery_mode=2))
+                        properties=aiormq.spec.Basic.Properties(delivery_mode=1))
         except Exception as e:
             logging.error(f"Exchange Queue: Error sending message {e}")
