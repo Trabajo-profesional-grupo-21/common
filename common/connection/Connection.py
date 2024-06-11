@@ -21,6 +21,7 @@ class Connection:
             self._active_channel = False
         except Exception as e:
             logging.error(f'Error init connection. error: {e}')
+            raise e
 
     def Consumer(self, queue_name):
         return WorkQueue(self.channel, queue_name)

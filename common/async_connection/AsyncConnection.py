@@ -29,6 +29,7 @@ class AsyncConnection:
             self._active_channel = False
         except Exception as e:
             logging.error(f'Error init connection. error: {e}')
+            raise e
 
     async def Publisher(self, exchange_name, exchange_type):
         return ExchangeQueue("pub", self.channel, exchange_name, exchange_type)
